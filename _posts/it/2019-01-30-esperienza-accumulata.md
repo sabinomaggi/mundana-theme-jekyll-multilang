@@ -1,8 +1,11 @@
 ---
 layout: post
 title:  "Esperienza accumulata della vita sociale"
+locale: it
 author: sal
 categories: [ Jekyll, tutorial ]
+tags: 
+    - [featured]
 image: assets/images/15.jpg
 ---
 Il ritaglio sagomato è stato impiegato anche al di fuori della sfera infantile, un esempio recente è l'ambizioso *Tree of Codes* di Jonathan Safran Foer.  

@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "L'educazione deve anche formare al pensiero rapido, risoluto ed efficace."
+locale: it
 categories: [ Jekyll, tutorial ]
+tags:
+    - [featured]
 image: assets/images/3.jpg
 ---
 Ci sono molte cose potenti che puoi fare con l'editor Markdown.

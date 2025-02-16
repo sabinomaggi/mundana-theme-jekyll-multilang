@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "We all wait for summer"
+locale: en
 author: jane
 categories: [ Jekyll, tutorial ]
 image: assets/images/1.jpg

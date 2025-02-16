@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Guida rapida a Jekyll"
+locale: it
 author: sal
 categories: [ Jekyll, tutorial ]
 image: assets/images/12.jpg

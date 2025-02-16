@@ -1,8 +1,12 @@
 ---
 layout: post
 title:  "L'albero dei codici"
+locale: it
 author: sal
 categories: [ Jekyll, tutorial ]
+tags:
+    - [featured]
+    - libro
 image: assets/images/2.jpg
 ---
 Si pensa che il primo libro prodotto in massa a discostarsi da un formato rettilineo, almeno negli Stati Uniti, sia questa edizione del 1863 di Cappuccetto Rosso, ritagliata nella forma della protagonista stessa con il lupo minaccioso raggomitolato ai suoi piedi. Prodotto dall'editore di Boston Louis Prang, questo è il primo della loro “Doll Series”, una serie di cinque libri “die-cut”, noti anche come shape books — gli altri titoli sono Robinson Crusoe, Goody Two-Shoes (scritto anche dall'autrice di Cappuccetto Rosso, Lydia Very), Cenerentola e Re Inverno. 

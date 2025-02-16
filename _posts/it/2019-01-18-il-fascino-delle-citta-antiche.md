@@ -1,10 +1,11 @@
 ---
 layout: post
 title:  "Potremmo reinventare il fascino delle vecchie città"
+locale: it
 author: jane
 categories: [ Jekyll, tutorial ]
+tags: [sticky, città]
 image: assets/images/home.jpg
-tags: [sticky]
 ---
 
 La storia di Bucarest ha alternato periodi di sviluppo e declino dalle prime insediamenti nell'antichità fino alla sua consolidazione come capitale nazionale della Romania alla fine del XIX secolo. Menzionata per la prima volta come “Cittadella di București” nel 1459, divenne la residenza del famoso principe valacco Vlad III l’Impalatore.

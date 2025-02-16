@@ -1,7 +1,11 @@
 ---
 layout: post
 title:  "Benvenuto su Jekyll!"
-categories: [ Jekyll ]
+locale: it
+categories: 
+    - Jekyll
+tags: 
+    - [sticky]
 image: assets/images/demo1.jpg
 ---
 Troverai questo post nella directory `_posts`. Sentiti libero di modificarlo e ricostruire il sito per vedere le tue modifiche. Puoi ricostruire il sito in diversi modi, ma il metodo più comune è eseguire `jekyll serve`, che avvia un server web e rigenera automaticamente il sito quando un file viene aggiornato.

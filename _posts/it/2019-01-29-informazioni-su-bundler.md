@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Informazioni su Bundler"
+locale: it
 author: sal
 categories: [ Jekyll ]
 image: assets/images/2.jpg

@@ -1,10 +1,15 @@
 ---
 layout: post
 title:  "Cose avanzate che puoi fare con l'editor Markdown"
+locale: it
 author: jane
-categories: [ Jekyll, tutorial ]
+categories: 
+    - Jekyll
+    - tutorial
+tags: 
+    - [featured]
+    - estate
 image: https://images.unsplash.com/photo-1528784351875-d797d86873a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80
-tags: [summer]
 ---
 Ci sono molte cose avanzate che puoi fare con l'editor Markdown. Se hai già acquisito una certa familiarità con la scrittura in Markdown, potresti apprezzare alcuni suggerimenti più avanzati su ciò che puoi fare con Markdown!
 
