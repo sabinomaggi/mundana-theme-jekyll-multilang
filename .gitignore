@@ -1,5 +1,19 @@
+#--- original content ---
 _site
 .sass-cache
 .jekyll-metadata
 node_modules
 Gemfile.lock
+
+#--- SM additions ---
+# macOS junk
+.DS_store
+
+# sparse files/directories
+*.OLD
+*.md
+TRASH
+
+# post images
+assets/images/*/*
+#--- end SM additions ---
