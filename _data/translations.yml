@@ -1,0 +1,94 @@
+strings:
+    en:
+        home:           "Home"
+        categories:     "Categories"
+        tags:           "Tags"
+        authors:        "Authors"
+        contact:        "Contact"
+        privacy:        "Privacy"
+        feed:           "Atom&nbsp;Feed"
+        search:         "Search"
+        latest_posts:   "Latest Posts"
+        all_posts:      "All Posts"
+        featured:       "Featured"
+        read_more:      "Read More"
+        follow:         "Follow"
+        share_this:     "Share this"
+        written_by:     "Written by"
+        comments:       "Comments"
+        min_read:       "min read"
+        mins_read:      "mins read"
+        contact_send:   "Please send your message to"
+        contact_reply:  "We will reply as soon as possible"
+        contact_required:   "All fields are required"
+        contact_name:   "Name"
+        contact_email:  "E-mail Address"
+        contact_msg:    "Message"
+        comment_add:    "Add a comment"
+        comment_name:   "Name (or nickname)"
+        comment_url:    "Website (optional)"
+        comment_url_note:   "Enter the website URL, in the format https://example.com"
+        comment_txt:    "Comment"
+        comment_preview: "Comment preview"
+        comment_chk:    "Check me out"
+        comment_send_btn:       "Send"
+        comment_sending_btn:    "Sending..."
+        comment_send_ok_btn:    "Comment sent"
+        pagination_first:   "First"
+        pagination_last:    "Last"
+    it:
+        home:           "Home"
+        categories:     "Categorie"
+        tags:           "Etichette"
+        authors:        "Autori"
+        contact:        "Contatto"
+        privacy:        "Privacy"
+        feed:           "Feed&nbsp;Atom"
+        search:         "Cerca"
+        latest_posts:   "Ultimi articoli"
+        all_posts:      "Tutti gli articoli"
+        featured:       "In evidenza"
+        read_more:      "Continua a leggere"
+        follow:         "Segui"
+        share_this:     "Condividi"
+        written_by:     "Pubblicato da"
+        comments:       "Commenti"
+        min_read:       "minuto di lettura"
+        mins_read:      "minuti di lettura"
+        contact_send:   "Invia il tuo messaggio a"
+        contact_reply:  "Ti risponderemo appena possibile"
+        contact_required:   "Tutti i campi sono obbligatori"
+        contact_name:   "Nome"
+        contact_email:  "Indirizzo e-mail"
+        contact_msg:    "Testo del messaggio"
+        comment_add:    "Aggiungi un commento"
+        comment_name:   "Nome (o nickname)"
+        comment_url:    "Sito web (opzionale)"
+        comment_url_note:   "Inserisci l'URL del sito web, nel formato https://esempio.com"
+        comment_txt:    "Commento"
+        comment_preview: "Anteprima commento"
+        comment_chk:    "Selezionami"
+        comment_send_btn:       "Invia"
+        comment_sending_btn:   "Sto inviando..."
+        comment_send_ok_btn:    "Commento inviato"
+        pagination_first:   "Prima"
+        pagination_last:    "Ultima"
+
+dates:
+    en:
+        date_format:    "%e %b %Y"
+        month_names: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    it:
+        date_format:    "%e-%b-%Y"
+        month_names: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+
+bio:
+    en: 
+        First Last:   "This is a short biography of me. Which I can separate into different paragraphs by starting a new line.
+        Just like I did here.
+        Or even here."
+        
+    it: 
+        First Last:   "Questa è una mia breve biografia. Che posso separare in paragrafi diversi andando a capo.
+        Proprio come ho fatto qui.
+        Oppure anche qui."

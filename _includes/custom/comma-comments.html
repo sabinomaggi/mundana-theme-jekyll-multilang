@@ -1,0 +1,230 @@
+{% assign loc = page.locale %}
+{% assign strings = site.data.translations.strings[loc] %}
+{% assign dates = site.data.translations.dates[loc] %}
+
+
+<div id="comments-container">
+    <!-- javascript will add comments here. loaded from backend and/or submitted successfully -->
+</div>
+
+
+<h4 class="font-weight-bold spanborder mt-4"><span>{{ strings.comment_add }}</span></h4>
+
+<form id="new-comment-form" action="{{ site.commentserver }}">
+    <input type="hidden" name="post" value="{{ loc }}-{{ page.name | remove: '.md' }}">
+    <div class="form-group">
+        <label for="lbl-comment-name">{{ strings.comment_name }}</label>
+        <input id="comment-name" type="text" name="name" class="form-control" aria-labelledby="lbl-comment-name" required />
+    </div>
+    <div class="form-group">
+        <label for="lbl-comment-url">{{ strings.comment_url }}</label>
+        <input id="comment-url" type="url" name="url" class="form-control" aria-labelledby="lbl-comment-url" placeholder="{{ strings.comment_url_note }}" />
+    </div>
+    <div class="form-group">
+        <label for="lbl-comment-area">{{ strings.comment_txt }}</label>
+        <textarea id="comment-area" name="message" class="form-control" aria-labelledby="lbl-comment-area" rows="5" required ></textarea>
+    </div>
+    <div class="form-group">
+        <label id="lbl-comment-preview"></label>
+        <div id="comment-preview" class="form-control bg-light h-auto"></div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input id="comment-check" type="checkbox" name="special" class="form-check-input" aria-labelledby="lbl-comment-check" required />
+            <label for="lbl-comment-check" class="form-check-label">{{ strings.comment_chk }}</label>
+        </div>
+    </div>
+    <button id="new-comment-submit" type="submit" class="btn btn-primary" value="Send">{{ strings.comment_send_btn }}</button>
+</form>
+
+
+<template id="comment-template">
+<div class="card border-primary rounded-0 mb-2">
+    <div class="d-flex flex-row flex-wrap">
+        <div class="card-block">
+            <canvas id="jdenticon" width="100%" height="100%" data-jdenticon-value="@id"></canvas>
+        </div>
+        <div class="card-header flex-fill">
+            <h5>@name</h5>
+            <div>@dateloc</div>
+        </div>
+    </div>
+    <div class="flex-column">
+        <div class="card-body">
+            <p class="card-text">@message</p>
+        </div>
+    </div>
+</div>
+</template>
+
+
+<script language="javascript">
+    /*  requires the Marked and DOMPurify libraries, which are loaded
+        in the <head> section of default.html
+    */
+
+    /*  jdenticon configuration
+        custom style: https://jdenticon.com/icon-designer.html?config=ffffffff0141320014411e50
+    */
+    window.jdenticon_config = {
+        lightness: {
+            color: [0.20, 0.65],
+            grayscale: [0.30, 0.81]
+        },
+        saturation: {
+            color: 0.50,
+            grayscale: 0.00
+        },
+        backColor: "#fff",
+        replaceMode: "observe"
+    };
+
+    /*  marked configuration
+    */
+    marked.use({
+        breaks: true,
+        gfm: true,
+    });
+
+    function sanitizeComment(comment) {
+        /*  takes a comment written in plain text, markdown or HTML,
+            converts the plain text/markdown parts into HTML
+            and sanitizes the resulting code
+        */
+        return DOMPurify.sanitize(marked.parse(comment), {USE_PROFILES: {html: true, mathMl: true}});
+    }
+    
+    /*  preview comment
+    */
+    var comment_area = document.getElementById("comment-area");
+    var comment_preview = document.getElementById("comment-preview");
+    var lbl_comment_preview = document.getElementById("lbl-comment-preview");
+    
+    comment_area.style.minHeight = "2.8rem";
+    lbl_comment_preview.style.display = "none";
+    comment_preview.style.display = "none";
+
+    comment_area.onkeyup = comment_area.onkeypress = function(){
+        comment_preview.innerHTML = sanitizeComment(this.value);
+    }
+
+    comment_area.onblur = function(){
+        if (comment_preview.innerHTML == "") {
+            lbl_comment_preview.style.display = "none";
+            comment_preview.style.display = "none";
+        }
+    }
+
+    comment_area.onfocus = function(){
+        lbl_comment_preview.style.display = "flex";
+        lbl_comment_preview.innerHTML = "{{ strings.comment_preview }}";
+        comment_preview.style.display = "inherit";
+        comment_preview.style.minHeight = "2.8rem";
+    }
+
+    /*  from https://stackoverflow.com/questions/9899372/vanilla-javascript-equivalent-of-jquerys-ready-how-to-call-a-function-whe
+    */
+    function domReady(fn) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            setTimeout(fn, 1);
+        } else {
+            document.addEventListener("DOMContentLoaded", fn);
+        }
+    } 
+
+    var addComment = function (data) {
+        const container = document.getElementById("comments-container");
+        const template = document.getElementById('comment-template');
+
+        var txt = template.innerHTML;
+       
+        /*  text of comment is in variable data.Message and might be in markdown
+            the lines below convert a markdown comment to HTML
+        */
+        var messageTxt = data.Message;
+        /* messageTxt = messageTxt.replace("<", "&#60;").replace(">", "&#62;"); */
+        
+        var messageSane = sanitizeComment(messageTxt);
+
+        var d = new Date(data.Ts);
+
+        /*  change date format according to Jekyll page.locale variable
+        */
+        const dateopts = {weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "numeric", hour12: false};
+        var dateLocale = d.toLocaleString("{{loc}}", options = dateopts);
+       
+        txt = txt.replace('@hash', data.Hash)
+                  .replace('@dateloc', dateLocale)
+                  .replace('@name', data.Author)
+                  .replace('@id', data.Author)
+                  .replace('@message', messageSane)
+                  .replace('@url', data.Link);
+        let temp = document.createElement('template');
+        temp.innerHTML = txt;
+        container.appendChild(temp.content.firstElementChild);
+    };
+
+    domReady(async function() {
+        let form = document.getElementById("new-comment-form");
+        let commentsUrl = "{{ site.commentserver }}/{{ loc }}-{{ page.name | remove: '.md' }}";
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            sendData();
+         });
+
+        const response = await fetch(commentsUrl);
+         if (response.ok) {
+            comments = await response.json();
+            comments.forEach(addComment);
+         } else {
+            e = "<div><b>Could not load comments</b></br>" + status + " " + err +
+                "<br/>Disabling commenting feature";
+            form.parentNode.insertBefore(document.createElement(e), form);
+            form.display = "none";
+        }
+
+         async function sendData() {
+            document.querySelector('#new-comment-submit').textContent = "{{ strings.comment_sending_btn }}";
+            
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(commentsUrl, {
+                    method: "POST",
+                    body: formData,
+                });
+                
+                button = document.querySelector('#new-comment-submit');
+                if (response.ok) {
+                    button.textContent = "{{ strings.comment_send_ok_btn }}";
+                    button.className = "btn btn-dark";
+                    comment = await response.json();
+                    addComment(comment);
+                    /*  comment sent successfully, now it is possible to clean the comment form
+                    */
+                    document.getElementById("comment-name").value = "";
+                    document.getElementById("comment-url").value = "";
+                    document.getElementById("comment-area").value = "";
+                    document.getElementById("lbl-comment-preview").style.display = "none";
+                    document.getElementById("comment-preview").style.display = "none";
+                    document.getElementById("comment-check").checked = false;
+                } else {
+                    button.className = 'btn-err';
+                    const message = await response.text();
+                    button.textContent = 'failed with status ' + response.status + ' ' + message;
+                }
+                /*  toggle state of send button after a timeout
+                */
+                setTimeout(function(){
+                    button.textContent = "{{ strings.comment_send_btn }}";
+                    button.className = "btn btn-primary";
+                }, 4000);
+                
+            } catch (e) {
+                button.textcontent = 'failed with error ' + e;
+                console.error(e);
+            }
+        }
+   });
+</script>

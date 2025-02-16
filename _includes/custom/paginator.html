@@ -1,0 +1,51 @@
+{% assign strings = site.data.translations.strings[loc] %}
+
+
+<nav aria-label="Page navigation">
+
+{% if paginator.page_trail %}
+
+    {% assign pagehalf = paginator.page | divided_by: 2 %}
+
+    {% capture first %}{{ paginator.first_page }}{% endcapture %}
+    {% capture last %}{{ paginator.last_page }}{% endcapture %}
+
+    <div class="pagination justify-content-center">
+        {% if paginator.first_page < paginator.page_trail.first.num %}
+            <span class="page-item blog_previous">
+                <a class="page-link" href="{{ paginator.first_page_path | prepend: site.baseurl }}" title="{{ page.title | regex_replace: '[0-9]+', first }}">{{strings.pagination_first}}</a>
+            </span>
+        {% endif %}
+
+        {% assign pageminus = paginator.page | minus: pagehalf %}
+        {% capture pageminus_str %}{{ pageminus }}{% endcapture %}
+        {% if pageminus > 1 and pageminus < paginator.page_trail.first.num %}
+            <span class="page-item blog_previous">
+                <a class="page-link" href="{{ paginator.page_path | regex_replace: '[0-9]+', pageminus_str | prepend: site.baseurl }}" title="{{ page.title | regex_replace: '[0-9]+', pageminus_str }}">&lt;&lt;</a>
+            </span>
+        {% endif %}
+
+        {% for trail in paginator.page_trail %}
+            <li {% if page.url == trail.path %}class="page-item active"{% else %}class="page-item"{% endif %}>
+            <a class="page-link" href="{{ trail.path | prepend: site.baseurl }}" title="{{trail.title}}">{{ trail.num }}</a>
+            </li>
+        {% endfor %}
+
+        {% assign pageplus = paginator.page | plus: pagehalf %}
+        {% capture pageplus_str %}{{ pageplus }}{% endcapture %}
+        {% if pageplus > paginator.page_trail.last.num and pageplus < paginator.total_pages %}
+            <span class="page-item blog_previous">
+                <a class="page-link" href="{{ paginator.page_path | regex_replace: '[0-9]+', pageplus_str | prepend: site.baseurl }}" title="{{ page.title | regex_replace: '[0-9]+', pageplus_str }}">&gt;&gt;</a>
+            </span>
+        {% endif %}
+
+        {% if paginator.last_page > paginator.page_trail.last.num %}
+            <span class="page-item blog_next">
+                <a class="page-link" href="{{ paginator.last_page_path | prepend: site.baseurl }}" title="{{ page.title | regex_replace: '[0-9]+', last }}">{{strings.pagination_last}}</a>
+            </span>
+        {% endif %}
+
+    </div>
+{% endif %}
+
+</nav>

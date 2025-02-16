@@ -802,5 +802,121 @@ div.a2a_full_footer {display:none;}
 	 .topfirstimage {
 		 height:280px !Important;
 	 }
- }
- 
+}
+
+
+
+
+/*!
+ * Further customizations to Mundana theme for Jekyll
+ */
+.crop-ofp {
+width:  52px;
+height: 52px;
+object-fit: cover;
+/* width:  2.5em; */
+/* height: 2.5em; */
+/* object-position: 25% 25%; */
+}
+
+.text-size-ofp {
+  font-size: 1.6rem;
+  vertical-align: center;
+}
+
+/* go to the top button */
+button.back-to-top{
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white;
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    color: transparent;
+    clear: both;
+    visibility: hidden;
+    position: fixed;
+    cursor: pointer;
+    display: block;
+    border: none;
+    right: 50px;
+    bottom: 100px;
+    font-size: 0px;
+    outline: 0 !important;
+    z-index: 2000;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+button.back-to-top:hover,
+button.back-to-top:active,
+button.back-to-top:focus,{
+    outline: 0 !important;
+}
+button.back-to-top::before,
+button.back-to-top::after {
+    content: "";
+    display: block;
+    vertical-align: middle;
+    border-bottom: solid 10px #EA5D5F;
+    border-left: solid 10px transparent;
+    line-height: 0;
+    border-right: solid 10px transparent;
+    height: 0;
+    margin: 18px auto 0;
+    width: 0;
+    border-radius:20px;
+    visibility: hidden;
+}
+button.back-to-top.show::after,
+button.back-to-top.show::before{
+    visibility: visible;
+}
+button.back-to-top::after {
+    border-bottom-color:#fff;
+    position: relative;
+    top:-24px;
+}
+button.back-to-top.show {
+    display: block;
+    background: white;
+    color: var(--primary);
+    font-size: 25px;
+    right: 25px;
+    bottom: 150px;
+    height: 50px;
+    width: 50px;
+    visibility: visible;
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
+}
+button.back-to-top.show:active {
+    box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+}
+
+
+/*  Nathan Lam, June 2, 2017
+    https://github.com/nathancy/jekyll-embed-video
+
+    add this css for responsive embedded videos in your .css file. */
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.embed-container iframe, .embed-container object, .embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

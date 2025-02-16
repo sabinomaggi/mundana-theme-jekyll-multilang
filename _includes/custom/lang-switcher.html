@@ -1,0 +1,19 @@
+{% for loc in site.locales %}
+    {% if loc == site.default_locale %}
+        <div class="col-auto">
+            <a class="nav-item nav-link" href="/">
+            <img class="img-fluid" src="{{site.baseurl}}/assets/images/{{loc}}.png" width="24px" />
+            {{ loc | downcase }}
+            </a>
+        </div>
+    {% else %}
+        <div class="col-auto">
+            <a class="nav-item nav-link" href="/{{ site.baseurl }}{{ loc }}">
+            <img class="img-fluid" src="{{site.baseurl}}/assets/images/{{loc}}.png" width="24px" />
+            {{ loc | downcase }}
+            </a>
+        </div>
+    {% endif %}
+{% endfor %}
+
+
